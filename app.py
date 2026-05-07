@@ -7,6 +7,12 @@ from fastapi import FastAPI, HTTPException, Query
 from pydantic import BaseModel
 
 app = FastAPI(title="Solar Swarm API", version="1.0.0")
+@app.get("/")
+def read_root():
+    return {
+        "message": "Solar Swarm API is Active",
+        "endpoints": ["/docs", "/scout", "/finance", "/health"]
+    }
 
 GOOGLE_SOLAR_API_KEY = os.getenv("GOOGLE_SOLAR_API_KEY", "YOUR_GOOGLE_SOLAR_API_KEY")
 NREL_API_KEY = os.getenv("NREL_API_KEY", "DEMO_KEY")
